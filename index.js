@@ -11,6 +11,10 @@ Vue.component("progress-bar", {
     "no-head": {
       type: Boolean,
       default: false
+    },
+    "show-value": {
+      type: String,
+      default: "popup"
     }
   },
   data() {
@@ -67,8 +71,9 @@ Vue.component("progress-bar", {
     }
   },
   template: `
-  <div class="progress-bar" :class="{'active': isMouseDown}">
-    <div class="bar" :style="\`width:\$\{(100*value$)/max\}%;\`">
+  <div class="progress-bar" :class="{'active': isMouseDown, 'popup': showValue == 'popup' || showValue == 'mixed'}">
+    <div class="bar" :style="\`width:\${(100*value$)/max}%;\`">
+      <div class="inline-value" :style="\`opacity:\${Math.min(value$,10)/10};\`" v-if="showValue == 'inline' || showValue == 'mixed'">{{value$.toFixed(2)}}</div>
       <div class="head" :value="value$.toFixed(2)"></div>
     </div>
   </div>

@@ -10,6 +10,8 @@
     <div id="vue-app" class="container">
       <div class="bars">
         <progress-bar v-model="test"></progress-bar>
+        <progress-bar v-model="test" show-value="inline"></progress-bar>
+        <progress-bar v-model="test" show-value="mixed"></progress-bar>
         <progress-bar :no-head="true" v-model="test"></progress-bar>
       </div>
     </div>
